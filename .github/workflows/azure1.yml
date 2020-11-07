@@ -41,7 +41,11 @@ jobs:
         npm install
         npm run build --if-present
         npm run test --if-present
-        sudo docker stop $(sudo docker ps -a -q); sudo docker rm $(sudo docker ps -a -q); sudo docker rmi $(sudo docker images -q); sudo docker build -t nodeimage .; sudo docker run -d --name mycont -p 80:80 nodeimage;
+        sudo docker stop $(sudo docker ps -a -q)
+        sudo docker rm $(sudo docker ps -a -q)
+        sudo docker rmi $(sudo docker images -q)
+        sudo docker build -t nodeimage .
+        sudo docker run -d --name mycont -p 80:80 nodeimage
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
